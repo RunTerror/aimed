@@ -7,40 +7,60 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
-    var h=MediaQuery.of(context).size.width;
-    var w=MediaQuery.of(context).size.height;
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        extendBody: false,
-        body: Padding(
-          padding:EdgeInsets.symmetric(horizontal: (w-w/1.1)/2),
-          child: Column(
-            children: [
-            const SizedBox(height: 100,),
-            Container(
-              alignment: Alignment.center,
-              width: w/1.1, height: h/3,color: Colors.pink,
-            padding:const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: Scaffold(
+            extendBody: false,
+            body: Stack(
               children: [
-              Container(height: h/8,width: w/2,color: Colors.grey,),
-              Container(height: h/8,width: w,color: Colors.green,),
-            ],),
-            )
-          ],),
-        )
-      )
-    );
+                SizedBox(
+                  height: h,
+                  width: w,
+                ),
+                Positioned(
+                    left: (w - w / 1.1) / 2,
+                    top: h / 10,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: w/60),
+                      width: w / 1.1,
+                      height: h / 8,
+                      color: Colors.pink,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                        Container(height: h/25, width: w/2.2,color: Colors.blue,),
+                        Container(height: h/25,width: w/1.2, color: Colors.blue,)
+                      ],),
+                    )),
+                Positioned(
+                    left: (w - w / 1.1) / 2,
+                    top: h / 10 + h/4,
+                    child: Container(
+                      padding: EdgeInsets.only(left: w/60,right: w/60, bottom: h/80),
+                      width: w / 1.1,
+                      height: h / 8,
+                      color: Colors.pink,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                        const Spacer(),
+                        Container(height: h/25,color: Colors.blue,)
+                      ],),
+                    )),
+                Positioned(left: (w-w/3)/2, top: h/10+h/4.5, child: Container(height: h/20,color: Colors.green,width: w/3,))
+
+              ],
+            )));
   }
 }
-
